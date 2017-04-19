@@ -125,7 +125,7 @@
             onEachFeature: popUp
         }).addTo(map);
         /*Placez ici un lien vers le fichier geojson de la seconde couche cartographique souhaitée*/
-        var layer2 = new L.GeoJSON.AJAX(["data/regfr_polygon.geojson"], {
+        var layer2 = new L.GeoJSON.AJAX(["data/comd07_centroid.geojson"], {
             onEachFeature: popUp
         });
         /* Si vous voulez ajouter des couches supplémentaires, il vous suffit de créer un fichier geojson et de l'ajouter comme précédemment, en ajoutant recopiant les 3 lignes précédentes ci-dessous et en ajoutant la couche dans la variable "var overlayMaps" */
@@ -137,8 +137,8 @@
         };
 
         var overlayMaps = {
-            "Communes d'Ardèche": layer1,
-            "Régions": layer2
+            "Communes d'Ardèche (polygone)": layer1,
+            "Communes d'Ardèche (centroid)": layer2
         };
 
         L.control.layers(baseMaps, overlayMaps).addTo(map);
