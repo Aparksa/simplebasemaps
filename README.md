@@ -4,6 +4,6 @@ Ces modèles utilisent les librairies Leaflet.js et quelques plugins de Leaflet 
 
 Il est basé sur des cartes réalisées par la LPO Ardèche dans le cadre de projets du réseau LPO Coordination Auvergne-Rhône-Alpes.
 
-Vous trouverez une [démo ici](https://aura-partage.lpo.fr/cartes/simplebasemaps/basics_lpo_aura-partage.html "Démo de carte en ligne")
+Vous trouverez une [démo ici](https://aura-partage.lpo.fr/cartes/simplebasemaps/basics.html "Démo de carte en ligne")
 
 **En attendant des explications plus détaillées, se référer aux commentaires des fichiers html.**
