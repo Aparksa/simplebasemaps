@@ -1,172 +1,199 @@
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- indiquez ici le titre de votre page -->
-    <title>LPO Coordination Auvergne-Rhône-Alpes | Carte de base</title>
-    <link rel="stylesheet" href="css/foundation.min.css">
-    <link rel="stylesheet" href="css/foundation-icons.css">
-    <link rel="stylesheet" href="css/leaflet.css">
-    <link rel="stylesheet" href="css/app.css">
-    <style>
-    html,
-        body,
-        #map {
-            width: 100%;
-            height: 100%;
-            padding: 0;
-            margin: 0;
-            font: 10pt "Helvetica Neue", Arial, Helvetica, sans-serif;
-        }
-    }
-    </style>
-</head>
-
-<body>
-    <!-- Foundation 6 TopBar  http://foundation.zurb.com/sites/docs/top-bar.html#
-          Adaptez le à votre besoin -->
-    <div class="top-bar" id="home">
-        <div class="top-bar-title">
-            <span data-responsive-toggle="responsive-menu" data-hide-for="medium">
-          <button class="menu-icon dark" type="button" data-toggle></button>
-          </span>
-            <strong>Espace de partage</strong>
-        </div>
-        <div id="responsive-menu">
-            <div class="top-bar-left">
-                <ul class="dropdown menu" data-dropdown-menu>
-                    <li><a href="https://aura-partage.lpo.fr" title="Accueil"><i class="fi-home"></i></a></li>
-                    <li><a href="#about" title="A propos de"><i class="fi-info"></i></a></li>
-                </ul>
-            </div>
-            <div class="top-bar-right">
-                <a href="http://auvergne-rhone-alpes.lpo.fr" hover="_blank"><img src="https://aura-partage.lpo.fr/img/logo_lpo_aura4darkbg_120px.png" width="100px"></a>
-            </div>
-        </div>
-    </div>
-    <header>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- indiquez ici le titre de votre page -->
-        <div class="row" style="max-width:1024px;">
-            <div class="large-12 columns">
-                <a href="http://auvergne-rhone-alpes.lpo.fr" hover="_blank"><img src="https://aura-partage.lpo.fr/img/logo_lpo_aura_darkbg.svg"></a><br />
-                <h1>Titre de la page</h1>
-            </div>
-            <div class="large-6 medium-6 small-12 columns">
-                <p align="center"><a href="#intro" class="button" title="Présentation"><i class="fi-info"></i> informations</a><br/>
-            </div>
-            <div class="large-6 medium-6 small-12 columns">
-                <p align="center"><a href="#carte" class="button" title="Carte"><i class="fi-map"></i> Carte</a><br/>
-            </div>
-            <!-- <div class="large-3 medium-6 small-12 columns">
-                <p align="center"><a href="#graph" class="button" title="Graphiques"><i class="fi-graph-trend"></i> Graphiques</a><br/>
-            </div>
-            <div class="large-3 medium-6 small-12 columns">
-                <p align="center"><a href="https://faunerhonealpes.org/observations/" target="_blank" class="button round" title="Graphiques"><i class="fi-torsos-all-female"></i> Participez !</a><br/>
-            </div> -->
-        </div>
-    </header>
-    <div class="row fullWidth" width="100%">
-        <div class="large-12 medium-12 small-12 columns" id="intro">
-            <h1><i class="fi-info"></i>  A propos de cette page</h1>
-            <p>Sit aut deleniti fugit voluptates. Rerum eos quaerat impedit. Natus omnis ratione soluta aut corrupti aliquid distinctio.</p>
-            <p>Et quia iusto ipsa. Esse reprehenderit sed enim necessitatibus fugit doloremque sit blanditiis. Blanditiis deserunt voluptatem excepturi cumque quia ut expedita. Quasi eius aut reiciendis debitis pariatur aut. Autem qui laboriosam quod voluptatem
-                molestiae distinctio. Et vitae ut dolores.</p>
-            <p>Dolores fuga soluta placeat. Et non reprehenderit quas dolorum. Et odio sit porro.</p>
-            <p>Harum blanditiis nam non sed et adipisci dolores. Nihil minima voluptate distinctio totam et fugiat voluptates et. Totam culpa eligendi quam temporibus adipisci.</p>
-            <p>Et fuga quia dolor excepturi dicta. Sunt magnam vitae et dolores et pariatur dolores rem. Provident quibusdam qui laboriosam similique.</p>
-        </div>
-    </div>
-    <div class="row fullWidth" width="100%">
-        <div class="large-12 medium-12 small-12 columns" id="intro">
-            <div>
-                <h1><i class="fi-map"></i> Carte</h1></div>
-        </div>
-    </div>
-    <div id="map"></div>
-    <script src="js/leaflet/leaflet.js"></script>
-    <script src="js/leaflet/leaflet.ajax.min.js"></script>
-    <script>
-        var lat = 44.75; /* la latitude du centroid de la carte */
-        var lng = 4.42; /* la longitude du centroid de la carte */
-        var zoom = 9; /* le zoom par défault de la carte */
-        // var map = L.map('map').setView([lat, lng], zoom);
-        var map = L.map('map', {
-            center: [lat, lng],
-            zoom: zoom
-        });
-        /*Couches de fond de carte, l'option ".addTo(map)" en fin de variable permet de charger automatiquement ce fond de carte au chargement de la page*/
-        var OpenStreetMap_Mapnik = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        }).addTo(map);
-        var OpenStreetMap_BlackAndWhite = L.tileLayer('http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
-            maxZoom: 18,
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        });
-        var OpenTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
-            maxZoom: 17,
-            attribution: 'Map data: &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
-        });
-
-        function popUp(f, l) {
-            var out = [];
-            if (f.properties) {
-                for (key in f.properties) {
-                    out.push("<b>" + key + "</b>: " + f.properties[key]);
-                }
-                l.bindPopup(out.join("<br />"));
+        <title>LPO Coordination Auvergne-Rhône-Alpes | Carte de base</title>
+        <link rel="stylesheet" href="css/foundation.min.css">
+        <link rel="stylesheet" href="css/foundation-icons.css">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/app.css">
+        <style>
+            html,
+            body,
+            #map {
+                width: 100%;
+                height: 100%;
+                padding: 0;
+                margin: 0;
+                font: 10pt "Helvetica Neue", Arial, Helvetica, sans-serif;
             }
-        }
-        /*Placez ici un lien vers le fichier geojson de la première couche cartographique souhaitée. La fin de la variable ".addTo(map)" permet de charger automatiquement à l'ouverture de la page*/
-        var layer1 = new L.GeoJSON.AJAX(["data/comd07_polygon.geojson"], {
-            onEachFeature: popUp
-        }).addTo(map);
-        /*Placez ici un lien vers le fichier geojson de la seconde couche cartographique souhaitée*/
-        var layer2 = new L.GeoJSON.AJAX(["data/comd07_centroid.geojson"], {
-            onEachFeature: popUp
-        });
-        /* Si vous voulez ajouter des couches supplémentaires, il vous suffit de créer un fichier geojson et de l'ajouter comme précédemment, en ajoutant recopiant les 3 lignes précédentes ci-dessous et en ajoutant la couche dans la variable "var overlayMaps" */
+            }
+        </style>
+    </head>
 
-        var baseMaps = {
-            "OpenStreetMap": OpenStreetMap_Mapnik,
-            "OpenStreetMap (nuance de gris)": OpenStreetMap_BlackAndWhite,
-            "OpenTopoMap": OpenTopoMap
-        };
-
-        var overlayMaps = {
-            "Communes d'Ardèche (polygone)": layer1,
-            "Communes d'Ardèche (centroid)": layer2
-        };
-
-        L.control.layers(baseMaps, overlayMaps).addTo(map);
-    </script>
-    <footer id="about" class="footer">
-        <div class="row full-width">
-            <div class="small-12 medium-4 large-4 columns">
-                <i class="fi-info"></i>
-                <p>LPO Coordination Auvergne-Rhône-Alpes<br /> 5, rue Bernard Gangloff<br /> 01160 PONT D'AIN<br /> Tél : 09.70.90.20.61<br /> (Du lundi au vendredi de 9h à 12h)<br/> Courriel : rhone-alpes[at]lpo.fr</p>
+    <body>
+        <!-- Foundation 6 TopBar  http://foundation.zurb.com/sites/docs/top-bar.html#
+              Adaptez le à votre besoin -->
+        <div class="top-bar" id="home">
+            <div class="top-bar-title">
+                <span data-responsive-toggle="responsive-menu" data-hide-for="medium">
+                    <button class="menu-icon dark" type="button" data-toggle></button>
+                </span>
+                <strong>Espace de partage</strong>
             </div>
-            <div class="small-12 medium-4 large-4 columns">
-                <i class="fi-mobile"></i>
-                <p>Page responsive et entièrement motorisée<br/>par des bibliothèques libres<br/><a class="button small success" href="http://foundation.zurb.com/">Zurb Foundation</a> <a class="button small" href="http://leafletjs.com/">leaflet.js</a></p>
-            </div>
-            <div class="small-12 medium-4 large-4 columns">
-                <i class="fi-at-sign"></i>
-                <p>Réalisation : LPO Ardèche<br />Hébergement : LPO France</p>
-                <p><a class="button small alert" href="https://framagit.org/webmapping/leaflet/simplebasemaps">Sources sur framagit</a></p>
+            <div id="responsive-menu">
+                <div class="top-bar-left">
+                    <ul class="dropdown menu" data-dropdown-menu>
+                        <li><a href="https://aura-partage.lpo.fr" title="Accueil"><i class="fi-home"></i></a></li>
+                        <li><a href="#about" title="A propos de"><i class="fi-info"></i></a></li>
+                    </ul>
+                </div>
+                <div class="top-bar-right">
+                    <a href="http://auvergne-rhone-alpes.lpo.fr" target="_blank"><img src="https://aura-partage.lpo.fr/img/logo_lpo_aura4darkbg_120px.png" width="100px"></a>
+                </div>
             </div>
         </div>
-    </footer>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/foundation/foundation.min.js"></script>
-    <script src="js/what-input.js"></script>
-    <!-- <script src="js/app.basics.js"></script> -->
-    <script>
-        $(document).foundation();
-    </script>
-</body>
+        <header>
+            <!-- indiquez ici le titre de votre page -->
+            <div class="row" style="max-width:1024px;">
+                <div class="large-12 columns">
+                    <a href="http://auvergne-rhone-alpes.lpo.fr" target="_blank"><img src="https://aura-partage.lpo.fr/img/logo_lpo_aura_darkbg.svg"></a><br />
+                    <h1>Titre de la page</h1>
+                </div>
+                <div class="large-6 medium-6 small-12 columns">
+                    <p align="center"><a href="#intro" class="button" title="Présentation"><i class="fi-info"></i> informations</a><br/>
+                </div>
+                <div class="large-6 medium-6 small-12 columns">
+                    <p align="center"><a href="#map" class="button" title="Carte"><i class="fi-map"></i> Carte</a><br/>
+                </div>
+                <!-- <div class="large-3 medium-6 small-12 columns">
+                    <p align="center"><a href="#graph" class="button" title="Graphiques"><i class="fi-graph-trend"></i> Graphiques</a><br/>
+                </div>
+                <div class="large-3 medium-6 small-12 columns">
+                    <p align="center"><a href="https://faunerhonealpes.org/observations/" target="_blank" class="button round" title="Graphiques"><i class="fi-torsos-all-female"></i> Participez !</a><br/>
+                </div> -->
+            </div>
+        </header>
+        <div class="row fullWidth">
+            <div class="large-12 medium-12 small-12 columns" id="intro">
+                <h1><i class="fi-info"></i>  A propos de cette page</h1>
+                <p>Sit aut deleniti fugit voluptates. Rerum eos quaerat impedit. Natus omnis ratione soluta aut corrupti aliquid distinctio.</p>
+                <p>Et quia iusto ipsa. Esse reprehenderit sed enim necessitatibus fugit doloremque sit blanditiis. Blanditiis deserunt voluptatem excepturi cumque quia ut expedita. Quasi eius aut reiciendis debitis pariatur aut. Autem qui laboriosam quod voluptatem
+                    molestiae distinctio. Et vitae ut dolores.</p>
+                <p>Dolores fuga soluta placeat. Et non reprehenderit quas dolorum. Et odio sit porro.</p>
+                <p>Harum blanditiis nam non sed et adipisci dolores. Nihil minima voluptate distinctio totam et fugiat voluptates et. Totam culpa eligendi quam temporibus adipisci.</p>
+                <p>Et fuga quia dolor excepturi dicta. Sunt magnam vitae et dolores et pariatur dolores rem. Provident quibusdam qui laboriosam similique.</p>
+            </div>
+        </div>
+        <div class="row fullWidth">
+            <div class="large-12 medium-12 small-12 columns" id="carte">
+                <h1><i class="fi-map"></i> Carte</h1>
+            </div>
+        </div>
+        <div id="map"></div>
+        <script src="js/leaflet/leaflet.js"></script>
+        <script src="js/leaflet/leaflet.ajax.min.js"></script>
+        <script>
+            var ycent = 44.7; /* la latitude du centroid de la carte */
+            var xcent = 4.4; /* la longitude du centroid de la carte */
+            var zoom = 9; /* le zoom par défault de la carte */
+            var xmin = 3.7;
+            var xmax = 5.1;
+            var ymin = 44.1;
+            var ymax = 45.5;
+            var southWest = L.latLng(ymin, xmin),
+                    northEast = L.latLng(ymax, xmax),
+                    bounds = L.latLngBounds(southWest, northEast);
+
+            //var map = L.map('map').setView([lat, lng], zoom);
+            var map = L.map('map', {
+                fullscreenControl: true,
+                // OR
+                fullscreenControl: {
+                    pseudoFullscreen: false // if true, fullscreen to page width and height
+                },
+                center: [ycent, xcent],
+                zoom: zoom,
+                maxBounds: bounds
+            });
+//            var map = L.map('map', {
+//                fullscreenControl: true,
+//                // OR
+//                fullscreenControl: {
+//                    pseudoFullscreen: false // if true, fullscreen to page width and height
+//                },
+//                center: [xcent, ycent],
+//                zoomControl: true,
+//                minZoom: zoom,
+//                maxZoom: 19
+//            });
+            /*Couches de fond de carte, l'option ".addTo(map)" en fin de variable permet de charger automatiquement ce fond de carte au chargement de la page*/
+            var OpenStreetMap_Mapnik = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }).addTo(map);
+            var OpenStreetMap_BlackAndWhite = L.tileLayer('http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
+                maxZoom: 18,
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            });
+            var OpenTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+                maxZoom: 17,
+                attribution: 'Map data: &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+            });
+            function popUp(f, l) {
+                var out = [];
+                if (f.properties) {
+                    for (key in f.properties) {
+                        out.push("<b>" + key + "</b>: " + f.properties[key]);
+                    }
+                    l.bindPopup(out.join("<br />"));
+                }
+            }
+            /*Placez ici un lien vers le fichier geojson de la première couche cartographique souhaitée. La fin de la variable ".addTo(map)" permet de charger automatiquement à l'ouverture de la page*/
+            var style_polygon_layer1 = {
+                color: "#1779ba",
+                weight: 2,
+                opacity: 0.8,
+                fillOpacity: 0.1
+            };
+            var layer1 = new L.GeoJSON.AJAX(["data/comd07_polygon.geojson"], {
+                onEachFeature: popUp,
+                style: style_polygon_layer1
+            }).addTo(map);
+            /*Placez ici un lien vers le fichier geojson de la seconde couche cartographique souhaitée*/
+            var layer2 = new L.GeoJSON.AJAX(["data/comd07_centroid.geojson"], {
+                onEachFeature: popUp});
+            /* Si vous voulez ajouter des couches supplémentaires, il vous suffit de créer un fichier geojson et de l'ajouter comme précédemment, en ajoutant recopiant les 3 lignes précédentes ci-dessous et en ajoutant la couche dans la variable "var overlayMaps" */
+
+            var baseMaps = {
+                "OpenStreetMap": OpenStreetMap_Mapnik,
+                "OpenStreetMap (nuance de gris)": OpenStreetMap_BlackAndWhite,
+                "OpenTopoMap": OpenTopoMap
+            };
+            var overlayMaps = {
+                "Communes d'Ardèche (polygone)": layer1,
+                "Communes d'Ardèche (centroid)": layer2
+            };
+            L.control.layers(baseMaps, overlayMaps).addTo(map);
+        </script>
+        <footer id="about" class="footer">
+            <div class="row full-width">
+                <div class="small-12 medium-4 large-4 columns">
+                    <i class="fi-info"></i>
+                    <p>LPO Coordination Auvergne-Rhône-Alpes<br /> 5, rue Bernard Gangloff<br /> 01160 PONT D'AIN<br /> Tél : 09.70.90.20.61<br /> (Du lundi au vendredi de 9h à 12h)<br/> Courriel : rhone-alpes[at]lpo.fr</p>
+                </div>
+                <div class="small-12 medium-4 large-4 columns">
+                    <i class="fi-mobile"></i>
+                    <p>Page responsive et entièrement motorisée<br/>par des bibliothèques libres<br/><a class="button small success" href="http://foundation.zurb.com/">Zurb Foundation</a> <a class="button small" href="http://leafletjs.com/">leaflet.js</a></p>
+                </div>
+                <div class="small-12 medium-4 large-4 columns">
+                    <i class="fi-at-sign"></i>
+                    <p>Réalisation : LPO Ardèche<br />Hébergement : LPO France</p>
+                    <p><a class="button small alert" href="https://framagit.org/webmapping/leaflet/simplebasemaps">Sources sur framagit</a></p>
+                </div>
+            </div>
+        </footer>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/foundation/foundation.min.js"></script>
+        <script src="js/what-input.js"></script>
+        <!-- <script src="js/app.basics.js"></script> -->
+        <script>
+            $(document).foundation();
+        </script>
+    </body>
 
 </html>
