@@ -7,7 +7,7 @@ pages:
   - mv .public public
   artifacts:
     paths:
-    - /
+    - ./
   only:
   - master
 ---
