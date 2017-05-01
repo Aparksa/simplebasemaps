@@ -46,7 +46,7 @@
                 </ul>
             </div>
             <div class="top-bar-right">
-                <a href=""><img src="http://leafletjs.com/docs/images/logo.png" width="120"></a>
+                <a href=""><img src="http://leafletjs.com/docs/images/logo.png" width="100"></a>
             </div>
         </div>
         <header>
@@ -76,18 +76,19 @@
         <script src="js/leaflet/leaflet.ajax.min.js"></script>
         <script src="js/leaflet/Leaflet.fullscreen.min.js"></script>
         <script>
+            /* Les variables suivantes permettent de définir l'emprise géographique de la carte
+             * Ce modèle utilise l'option "maxBounds" qui permet de limiter les déplacements de la carte
+             * à l'emprise souhaitée. Toutes ces coordonnées sont en projection mondiale WGS84 (EPSG 4326) */
             var ycent = 44.7; /* la latitude du centroid de la carte */
             var xcent = 4.4; /* la longitude du centroid de la carte */
             var zoom = 9; /* le zoom par défault de la carte */
-            var xmin = 3.7;
-            var xmax = 5.1;
-            var ymin = 44.1;
-            var ymax = 45.5;
+            var xmin = 3.7; /*La limite OUEST de la carte */
+            var xmax = 5.1; /* La limite  EST de la carte */
+            var ymin = 44.1; /* La limite SUD de la carte */
+            var ymax = 45.5; /* La limite NORD de la carte */
             var southWest = L.latLng(ymin, xmin),
                     northEast = L.latLng(ymax, xmax),
                     bounds = L.latLngBounds(southWest, northEast);
-
-            //var map = L.map('map').setView([lat, lng], zoom);
             var map = L.map('map', {
                 fullscreenControl: true,
                 // OR
@@ -96,20 +97,10 @@
                 },
                 center: [ycent, xcent],
                 zoom: zoom,
+                minZoom: zoom,
+                maxZoom: 19,
                 maxBounds: bounds
             });
-//            va
-//            var map = L.map('map', {
-//                fullscreenControl: true,
-//                // OR
-//                fullscreenControl: {
-//                    pseudoFullscreen: false // if true, fullscreen to page width and height
-//                },
-//                center: [xcent, ycent],
-//                zoomControl: true,
-//                minZoom: zoom,
-//                maxZoom: 19
-//            });
             /*Couches de fond de carte, l'option ".addTo(map)" en fin de variable permet de charger automatiquement ce fond de carte au chargement de la page*/
             var OpenStreetMap_Mapnik = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
@@ -133,18 +124,27 @@
                     l.bindPopup(out.join("<br />"));
                 }
             }
-            /*Placez ici un lien vers le fichier geojson de la première couche cartographique souhaitée. La fin de la variable ".addTo(map)" permet de charger automatiquement à l'ouverture de la page*/
 
-            var style_polygon_layer1 = {
-                color: "#1779ba",
-                weight: 2,
-                opacity: 0.8,
-                fillOpacity: 0.1
+            /* Les couches ajoutées sont au format GeoJson
+             * Ils peuvent être créés depuis QGIS comme précisé ici: https://aura-wiki.lpo.fr/doku.php?id=wiki:sig_bdd:websig:qgis2json
+             * Cette première couche contient des polygones avec des données attributaires associées (dans cette exemple, les communes d'Ardèche)*/
+
+            /* Cette prelmière variable défini les couleurs qui seront utilisées pour les polygones */
+
+            var style1_polygon_layer = {
+                color: "#1779ba", /* Couleur des polygones */
+                weight: 2, /* Epausseur de la bordure */
+                opacity: 0.8, /* Transparence de la bordure */
+                fillOpacity: 0.1 /* Transparence du fond des polygones */
             };
+
+            /* La variable suivante, charge le fichier "comd07_polygon.geojson" placé dans le dossier "data"
+             * et lui applique le style défini dans la variable précédente . La fin de la variable ".addTo(map)"
+             * permet de charger automatiquement à l'ouverture de la page */
 
             var layer1 = new L.GeoJSON.AJAX(["data/comd07_polygon.geojson"], {
                 onEachFeature: popUp,
-                style: style_polygon_layer1
+                style: style1_polygon_layer
             }).addTo(map);
 
             /*Placez ici un lien vers le fichier geojson de la seconde couche cartographique souhaitée*/

@@ -1,12 +1,12 @@
 body {
-  color: #333;
+    color: #333;
 }
 
 .fullWidth {
-   width: 100%;
-   margin-left: auto;
-   margin-right: auto;
-   max-width: initial;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: initial;
 }
 
 header {
@@ -54,15 +54,15 @@ header .button:hover {
 }
 
 canvas {
-  padding: 10px;
+    padding: 10px;
 }
 
 .fixedchartheight {
-  height: 560px;
+    height: 560px;
 }
 
 .partenaires {
-  background-color: none;
+    background-color: none;
 }
 
 .footer {
@@ -111,6 +111,7 @@ canvas {
 .top-bar, .top-bar ul {
     background-color: #333;
     color: #fff;
+    /*    font-size: 15px;*/
 }
 
 .top-bar a {
@@ -121,9 +122,9 @@ canvas {
     color: #ddd
 }
 
-.top-bar i {
-    font-size: 20px;
-}
+/*.top-bar i {
+    font-size: 15px;
+}*/
 
 .callout {
     border-radius: 5px;
