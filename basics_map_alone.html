@@ -95,8 +95,12 @@
 
             /* La variable suivante, charge le fichier "comd07_polygon.geojson" placé dans le dossier "data"
              * et lui applique le style défini dans la variable précédente . La fin de la variable ".addTo(map)"
-             * permet de charger automatiquement à l'ouverture de la page */
+             * permet de charger automatiquement à l'ouverture de la page
+             * Il est également possible de se connecter directement à une bdd postgresql en utilisant le script 
+             * php geoData.php. Pour ce faire, il convient de configurer préalablement la connection en renommant 
+             * cred.php.sample en cred.php et en modifiant les informations de connection */
 
+            //var layer1 = new L.GeoJSON.AJAX(["php/getData.php?geotable=webgis.bromadiolone_auv&geomfield=geom&fields=insee_com,nom_com,debut,fin,traitement"], {
             var layer1 = new L.GeoJSON.AJAX(["data/comd07_polygon.geojson"], {
                 onEachFeature: popUp,
                 style: style1_polygon_layer
